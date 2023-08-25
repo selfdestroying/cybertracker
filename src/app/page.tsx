@@ -4,21 +4,10 @@ import GamesSection from './_src/components/sections/GamesSection/GamesSection'
 import TournamentsSection from './_src/components/sections/TournamentsSection/TournamentsSection'
 
 export default async function Page() {
-	let tournaments: Tournament[] | undefined | null
-	let matches: Match[] | undefined | null
+	const tournaments = await getAllTournaments('future')
+	const matches = await getAllMatches()
 	console.log('Page.tsx')
-	try {
-		tournaments = await getAllTournaments('future')
-	} catch (error) {
-		console.log(error)
-		tournaments = []
-	}
-	try {
-		matches = await getAllMatches()
-	} catch (error) {
-		console.log(error)
-		matches = []
-	}
+
 	return (
 		<div className='h-screen flex flex-col'>
 			<p className='text-2xl text-gray-600'>Alpha build</p>

@@ -62,14 +62,19 @@ const getAllTournaments = async (
 	game: string | null = null
 ): Promise<Tournament[]> => {
 	console.log('TournamentService.ts:getAllTournaments')
-	const params = getParams(game, interval)
-	const res = await axios.get(url, { params })
-	if (!res.data['data']) {
+	try {
+		const params = getParams(game, interval)
+		const res = await axios.get(url, { params })
+		if (!res.data['data']) {
+			return []
+		}
+		const data = res.data['data']
+		const tournaments = parseTournamentsData(data)
+		return tournaments
+	} catch (e) {
+		console.log(e)
 		return []
 	}
-	const data = res.data['data']
-	const tournaments = parseTournamentsData(data)
-	return tournaments
 }
 
 export default getAllTournaments
