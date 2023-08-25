@@ -1,0 +1,38 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+	--foreground-rgb: 0, 0, 0;
+	--tw-content: '';
+}
+
+@media (prefers-color-scheme: dark) {
+	:root {
+		--foreground-rgba: 255, 255, 255, 0.75;
+		--background-hex: #121319;
+	}
+}
+
+* {
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+}
+
+body {
+	color: rgba(var(--foreground-rgba));
+	background: var(--background-hex);
+}
+
+.glass {
+	background: linear-gradient(
+		180deg,
+		rgba(255, 255, 255, 0.02) 0%,
+		rgba(255, 255, 255, 0.03) 100%
+	);
+	box-shadow: -1px -1px 1px 0px rgba(255, 255, 255, 0.15);
+	backdrop-filter: blur(10px);
+	-webkit-backdrop-filter: blur(10px);
+	/* border: 1px solid rgba(255, 255, 255, 0.05); */
+}
