@@ -61,20 +61,15 @@ const getAllTournaments = async (
 	interval: string,
 	game: string | null = null
 ): Promise<Tournament[]> => {
-	console.log('Ping')
-	try {
-		const params = getParams(game, interval)
-		const res = await axios.get(url, { params })
-		if (!res.data['data']) {
-			return []
-		}
-		const data = res.data['data']
-		const tournaments = parseTournamentsData(data)
-		return tournaments
-	} catch (e) {
-		console.log(e)
+	console.log('TournamentService.ts:getAllTournaments')
+	const params = getParams(game, interval)
+	const res = await axios.get(url, { params })
+	if (!res.data['data']) {
 		return []
 	}
+	const data = res.data['data']
+	const tournaments = parseTournamentsData(data)
+	return tournaments
 }
 
 export default getAllTournaments
