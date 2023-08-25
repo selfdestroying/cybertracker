@@ -65,9 +65,9 @@ const getAllTournaments = async (
 		console.log('TournamentService.ts:getAllTournaments')
 		const params = getParams(game, interval)
 		const res = await axios.get(url, { params })
-		if (!res.data['data']) {
-			return []
-		}
+		// if (!res.data['data']) {
+		// 	return []
+		// }
 		const data = res.data['data']
 		const tournaments = parseTournamentsData(data)
 		return tournaments

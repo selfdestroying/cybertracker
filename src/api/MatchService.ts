@@ -130,9 +130,9 @@ const getAllMatches = async (game: string | null = null): Promise<Match[]> => {
 		console.log('MatchService.ts:getAllMatches')
 		const params = getParams(game)
 		const res = await axios.get(url, { params })
-		if (!res.data['data']) {
-			return []
-		}
+		// if (!res.data['data']) {
+		// 	return []
+		// }
 		const matches = parseMatchesData(res.data)
 		console.log(matches)
 
