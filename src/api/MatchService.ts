@@ -126,8 +126,8 @@ const parseMatchesData = (res: any): Match[] => {
 }
 
 const getAllMatches = async (game: string | null = null): Promise<Match[]> => {
-	console.log('MatchService.ts:getAllMatches')
 	try {
+		console.log('MatchService.ts:getAllMatches')
 		const params = getParams(game)
 		const res = await axios.get(url, { params })
 		if (!res.data['data']) {
@@ -137,7 +137,7 @@ const getAllMatches = async (game: string | null = null): Promise<Match[]> => {
 
 		return matches
 	} catch (e) {
-		console.log(e)
+		console.log('Parse Mathces Error')
 		return []
 	}
 }
