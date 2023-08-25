@@ -6,6 +6,7 @@ import TournamentsSection from './_src/components/sections/TournamentsSection/To
 export default async function Page() {
 	const tournaments = await getAllTournaments('future')
 	const matches = await getAllMatches()
+	console.log('Page.tsx')
 
 	return (
 		<div className='h-screen flex flex-col'>

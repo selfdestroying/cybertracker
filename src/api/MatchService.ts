@@ -126,13 +126,13 @@ const parseMatchesData = (res: any): Match[] => {
 }
 
 const getAllMatches = async (game: string | null = null): Promise<Match[]> => {
+	console.log('Ping')
 	try {
 		const params = getParams(game)
 		const res = await axios.get(url, { params })
 		if (!res.data['data']) {
 			return []
 		}
-		console.log('Ping')
 		const matches = parseMatchesData(res.data)
 
 		return matches

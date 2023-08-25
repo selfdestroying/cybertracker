@@ -61,13 +61,13 @@ const getAllTournaments = async (
 	interval: string,
 	game: string | null = null
 ): Promise<Tournament[]> => {
+	console.log('Ping')
 	try {
 		const params = getParams(game, interval)
 		const res = await axios.get(url, { params })
 		if (!res.data['data']) {
 			return []
 		}
-		console.log('Ping')
 		const data = res.data['data']
 		const tournaments = parseTournamentsData(data)
 		return tournaments
