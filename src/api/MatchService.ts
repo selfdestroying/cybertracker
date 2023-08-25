@@ -134,6 +134,7 @@ const getAllMatches = async (game: string | null = null): Promise<Match[]> => {
 			return []
 		}
 		const matches = parseMatchesData(res.data)
+		console.log(matches)
 
 		return matches
 	} catch (e) {
