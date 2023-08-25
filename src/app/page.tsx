@@ -18,4 +18,4 @@ export default async function Page() {
 		</div>
 	)
 }
-export const revalidate = 60
+export const revalidate = 0
