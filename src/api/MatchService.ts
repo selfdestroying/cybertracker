@@ -126,15 +126,20 @@ const parseMatchesData = (res: any): Match[] => {
 }
 
 const getAllMatches = async (game: string | null = null): Promise<Match[]> => {
-	const params = getParams(game)
-	const res = await axios.get(url, { params })
-	if (!res.data['data']) {
+	try {
+		const params = getParams(game)
+		const res = await axios.get(url, { params })
+		if (!res.data['data']) {
+			return []
+		}
+		console.log('Ping')
+		const matches = parseMatchesData(res.data)
+
+		return matches
+	} catch (e) {
+		console.log(e)
 		return []
 	}
-	console.log('Ping')
-	const matches = parseMatchesData(res.data)
-
-	return matches
 }
 
 export default getAllMatches
