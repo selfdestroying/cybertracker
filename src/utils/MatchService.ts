@@ -1,12 +1,9 @@
-import axios from 'axios'
-
-const url = 'https://www.cybersport.ru/api/matches'
 const games: Games = {
 	cs: '19',
 	dota: '21',
 }
 
-const getTime = () => {
+export const getTime = () => {
 	const dateNow = new Date()
 
 	const formattedDate = `${dateNow.getFullYear()}-${
@@ -19,7 +16,7 @@ const getTime = () => {
 	return time
 }
 
-const getParams = (game: string | null): MatchesRequestParams => {
+export const getMatchesParams = (game: string | null): MatchesRequestParams => {
 	const time = getTime()
 	if (game) {
 		return {
@@ -35,7 +32,7 @@ const getParams = (game: string | null): MatchesRequestParams => {
 	}
 }
 
-const parseMatchesData = (res: any): Match[] => {
+export const parseMatchesData = (res: any): Match[] => {
 	const data = res['data']
 	const included = res['included']
 	const matches = []
@@ -124,22 +121,3 @@ const parseMatchesData = (res: any): Match[] => {
 	}
 	return matches
 }
-
-const getAllMatches = async (game: string | null = null): Promise<Match[]> => {
-	console.log('MatchService.ts:getAllMatches')
-	try {
-		const params = getParams(game)
-		const res = await axios.get(url, { params })
-		if (!res.data['data']) {
-			return []
-		}
-		const matches = parseMatchesData(res.data)
-
-		return matches
-	} catch (e) {
-		console.log(e)
-		return []
-	}
-}
-
-export default getAllMatches

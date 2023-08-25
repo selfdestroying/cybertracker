@@ -1,13 +1,10 @@
-import axios from 'axios'
-
 const games: Games = {
 	cs: '19',
 	dota: '21',
 }
 const tier: number = 1
-const url: string = 'https://www.cybersport.ru/api/tournament-stages'
 
-const getParams = (
+export const getTournamentsParams = (
 	game: string | null,
 	interval: string
 ): TournamentsRequestParams => {
@@ -24,7 +21,7 @@ const getParams = (
 	}
 }
 
-const parseTournamentsData = (data: any): Tournament[] => {
+export const parseTournamentsData = (data: any): Tournament[] => {
 	const parsedData = []
 
 	for (const tournament of data) {
@@ -56,25 +53,3 @@ const parseTournamentsData = (data: any): Tournament[] => {
 
 	return parsedData
 }
-
-const getAllTournaments = async (
-	interval: string,
-	game: string | null = null
-): Promise<Tournament[]> => {
-	console.log('TournamentService.ts:getAllTournaments')
-	try {
-		const params = getParams(game, interval)
-		const res = await axios.get(url, { params })
-		if (!res.data['data']) {
-			return []
-		}
-		const data = res.data['data']
-		const tournaments = parseTournamentsData(data)
-		return tournaments
-	} catch (e) {
-		console.log(e)
-		return []
-	}
-}
-
-export default getAllTournaments
