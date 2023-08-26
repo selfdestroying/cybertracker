@@ -1,8 +1,5 @@
 import { getMatchesParams, parseMatchesData } from '@/utils/MatchService'
-import {
-	getTournamentsParams,
-	parseTournamentsData,
-} from '@/utils/TournamentService'
+import { parseTournamentsData } from '@/utils/TournamentService'
 import axios from 'axios'
 import GamesSection from './_src/components/sections/GamesSection/GamesSection'
 import TournamentsSection from './_src/components/sections/TournamentsSection/TournamentsSection'
@@ -11,10 +8,22 @@ const getAllTournaments = async (
 	game: string | null = null
 ): Promise<Tournament[]> => {
 	const url: string = 'https://www.cybersport.ru/api/tournament-stages'
-	console.log('TournamentService.ts:getAllTournaments')
 	try {
-		const params = getTournamentsParams(game, interval)
-		const res = await axios.get(url, { params })
+		const res = await axios.get(
+			'https://www.cybersport.ru/api/tournament-stages?filter[interval]=future',
+			{
+				method: 'GET', // *GET, POST, PUT, DELETE, etc.
+				mode: 'cors', // @ts-ignore
+				cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
+				credentials: 'same-origin', // include, *same-origin, omit
+				headers: {
+					'Content-Type': 'application/json',
+					// 'Content-Type': 'application/x-www-form-urlencoded',
+				},
+				redirect: 'follow', // manual, *follow, error
+				referrerPolicy: 'no-referrer', // no-referrer, *client
+			}
+		)
 		if (!res.data['data']) {
 			return []
 		}
@@ -28,10 +37,21 @@ const getAllTournaments = async (
 }
 const getAllMatches = async (game: string | null = null): Promise<Match[]> => {
 	const url = 'https://www.cybersport.ru/api/matches'
-	console.log('MatchService.ts:getAllMatches')
 	try {
 		const params = getMatchesParams(game)
-		const res = await axios.get(url, { params })
+		const res = await axios.get(url, {
+			params,
+			method: 'GET', // *GET, POST, PUT, DELETE, etc.
+			mode: 'cors', // no-cors, *cors, same-origin
+			cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
+			credentials: 'same-origin', // include, *same-origin, omit
+			headers: {
+				'Content-Type': 'application/json',
+				// 'Content-Type': 'application/x-www-form-urlencoded',
+			},
+			redirect: 'follow', // manual, *follow, error
+			referrerPolicy: 'no-referrer', // no-referrer, *client
+		})
 		if (!res.data['data']) {
 			return []
 		}
