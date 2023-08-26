@@ -25,9 +25,6 @@ const getAllTournaments = async (
 				referrerPolicy: 'no-referrer', // no-referrer, *client
 			}
 		)
-		if (!res.data['data']) {
-			return []
-		}
 		const data = res.data['data']
 		const tournaments = parseTournamentsData(data)
 		return tournaments
@@ -56,9 +53,6 @@ const getAllMatches = async (game: string | null = null): Promise<Match[]> => {
 			redirect: 'follow', // manual, *follow, error
 			referrerPolicy: 'no-referrer', // no-referrer, *client
 		})
-		if (!res.data['data']) {
-			return []
-		}
 		const matches = parseMatchesData(res.data)
 
 		return matches
