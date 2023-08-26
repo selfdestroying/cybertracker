@@ -28,7 +28,7 @@ export const getMatchesParams = (game: string | null): MatchesRequestParams => {
 
 	return {
 		sort: 'date',
-		'filter[dateTimeAfter]': time,
+		'filter[dateTimeAfter]': '2023-08-26 17:42:01',
 	}
 }
 

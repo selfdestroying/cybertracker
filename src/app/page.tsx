@@ -40,6 +40,8 @@ const getAllMatches = async (game: string | null = null): Promise<Match[]> => {
 	const url = 'https://www.cybersport.ru/api/matches'
 	try {
 		const params = getMatchesParams(game)
+		console.log(params)
+
 		const res = await axios.get(url, {
 			params,
 			method: 'GET', // *GET, POST, PUT, DELETE, etc.
