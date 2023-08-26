@@ -1,19 +1,13 @@
+import moment from 'moment'
 const games: Games = {
 	cs: '19',
 	dota: '21',
 }
 
 export const getTime = () => {
-	const dateNow = new Date()
-
-	const formattedDate = `${dateNow.getFullYear()}-${
-		dateNow.getMonth() + 1
-	}-${dateNow.getDate()}`
-	const formattedTime = dateNow.toLocaleTimeString()
-
-	const time = `${formattedDate} ${formattedTime}`
-
-	return time
+	const dateNow = moment().format('YYYY-MM-DD HH:mm:ss')
+	console.log(dateNow)
+	return dateNow
 }
 
 export const getMatchesParams = (game: string | null): MatchesRequestParams => {
@@ -28,7 +22,7 @@ export const getMatchesParams = (game: string | null): MatchesRequestParams => {
 
 	return {
 		sort: 'date',
-		'filter[dateTimeAfter]': '2023-08-26 17:42:01',
+		'filter[dateTimeAfter]': time,
 	}
 }
 
