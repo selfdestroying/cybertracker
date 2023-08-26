@@ -5,7 +5,7 @@ const games: Games = {
 }
 
 export const getTime = () => {
-	const dateNow = moment().format('YYYY-MM-DD HH:mm:ss')
+	const dateNow = moment().zone('+03:00').format('YYYY-MM-DD HH:mm:ss')
 	console.log(dateNow)
 	return dateNow
 }
